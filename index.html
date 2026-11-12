@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>El laboratori de Peter Berthold · Aula i Natura</title>
+  <meta name="description" content="Laboratori interactiu sobre l'orientació dels ocells migradors. Curs «Els secrets del gran viatge», d'Aula i Natura.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="start" id="start" role="dialog" aria-labelledby="start-title">
+  <div class="start-box">
+    <img src="assets/logo.png" alt="" class="logo-start" onerror="this.style.display='none'">
+    <p class="kicker">Aula i Natura · Curs «Els secrets del gran viatge»</p>
+    <h2 id="start-title">El laboratori de Peter Berthold</h2>
+    <p>Un laboratori on comprovar i experimentar com s'orienten els ocells. Posa un ocell i un instrument o acció a la cambra central i veiem què passa.</p>
+    <button class="btn primary big" id="btn-start" type="button">Entra al laboratori</button>
+    <p class="start-hint">Berthold t'explicarà tot amb veu. Pots desactivar-la quan vulguis.</p>
+  </div>
+</div>
+<div class="lab">
+  <header class="top">
+    <div class="brand"><img src="assets/logo.png" alt="" class="logo" onerror="this.style.display='none'"><div><span class="kicker">Aula i Natura · Curs «Els secrets del gran viatge»</span><h1>El laboratori de Peter Berthold</h1></div></div>
+    <div class="top-actions">
+      <button class="btn small" id="btn-book" type="button">📓 Quadern <span id="book-count">0</span></button>
+      <button class="btn small ghost" id="btn-about" type="button">Sobre el joc</button>
+    </div>
+  </header>
+
+  <main class="grid">
+    <aside class="guide" aria-label="Berthold, el guia">
+      <div id="bt-host" class="bt-host"></div>
+      <button class="btn small ghost who-btn" id="btn-who" type="button">Qui era Peter Berthold?</button>
+      <button class="btn small ghost voice-btn" id="btn-music" type="button" aria-pressed="true">🎵 Música: activada</button>
+      <button class="btn small ghost voice-btn" id="btn-voice" type="button" aria-pressed="false">🔇 Veu: desactivada</button>
+      <div class="bubble" id="bubble" role="status" aria-live="polite">
+        <p id="bubble-text"></p>
+        <button class="btn small" id="btn-next" type="button" hidden>Continua ▸</button>
+      </div>
+    </aside>
+
+    <section class="chamber" aria-label="Cambra experimental">
+      <div class="cv-wrap" id="cv-wrap">
+        <canvas id="cv" aria-label="Escena de l'experiment"></canvas>
+        <div class="drop-hint" id="drop-hint">Arrossega aquí un ocell i un instrument<br><small>(o toca'ls a la dreta)</small></div>
+      </div>
+
+      <div class="slots">
+        <button class="slot" id="slot-bird" type="button" data-kind="bird" aria-label="Ocell triat. Toca per treure'l"><span class="slot-label">Ocell</span><span class="slot-val" id="slot-bird-val">— buit —</span></button>
+        <span class="plus">+</span>
+        <button class="slot" id="slot-ins" type="button" data-kind="ins" aria-label="Instrument triat. Toca per treure'l"><span class="slot-label">Instrument</span><span class="slot-val" id="slot-ins-val">— buit —</span></button>
+      </div>
+      <div class="opts" id="opts" role="group" aria-label="Condició de l'experiment" hidden></div>
+      <div class="go-row"><button class="btn primary big" id="btn-go" type="button" disabled>▶ Experimenta</button> <button class="btn ghost" id="btn-clear" type="button">🧹 Buida la cambra</button></div>
+
+      <div class="hyp" id="hyp" hidden>
+        <p class="hyp-q" id="hyp-q"></p>
+        <div class="hyp-opts" id="hyp-opts"></div>
+        <button class="btn small ghost" id="hyp-skip" type="button">Prefereixo veure-ho directament</button>
+      </div>
+
+      <div class="result" id="result" hidden>
+        <span class="badge" id="badge"></span>
+        <p id="verdict" class="verdict" hidden></p>
+        <p id="note" class="note"></p>
+        <p id="code" class="code"></p>
+        <div id="try" class="try" hidden><span>Prova també:</span><div id="try-list"></div></div>
+        <button class="btn small" id="btn-new" type="button">Nou experiment</button>
+      </div>
+    </section>
+
+    <aside class="shelf" aria-label="Material del laboratori">
+      <h2>Ocells</h2>
+      <div class="birds" id="birds"></div>
+      <h2>Instruments</h2>
+      <div class="instruments" id="instruments"></div>
+    </aside>
+  </main>
+
+  <footer class="foot"><span><strong>Aula i Natura</strong> · Ocells... i més que ocells</span><span class="foot-note">Dibuixos esquemàtics. Els resultats provenen del curs; el que el curs no recull, no s'inventa.</span></footer>
+</div>
+
+<dialog id="dlg-book"><form method="dialog" class="dlg"><h2>Quadern de laboratori</h2><p id="book-sum"></p><ul id="book-list" class="book-list"></ul><button class="btn primary">Tanca</button></form></dialog>
+<dialog id="dlg-who"><form method="dialog" class="dlg who">
+  <h2>Peter Berthold (1939–2023)</h2>
+  <figure class="who-fig"><img src="assets/berthold.jpg" alt="Retrat de Peter Berthold" onerror="this.parentNode.style.display='none'">
+    <!-- CRÈDIT DE LA FOTO: escriu aquí l'autor i la llicència -->
+    <figcaption id="who-credit">Fotografia: autor i llicència (cal completar-ho).</figcaption></figure>
+  <p>Ornitòleg alemany, especialista en la migració dels ocells. Investigador de l'Institut Max Planck d'Ornitologia.</p>
+  <p>Va estudiar la fisiologia, l'orientació i els mecanismes de la migració, i la influència de la genètica, l'alimentació i el medi ambient. Va demostrar la importància de la predisposició genètica en el comportament migratori. Va ser autor del llibre <em>Vogelzug</em>, obra de referència.</p>
+  <p class="who-note">A la cambra, Berthold «parla» per explicar el curs. Els textos són redactats per al joc a partir del curs: no són cites reals seves.</p>
+  <button class="btn primary">Tanca</button></form></dialog>
+<dialog id="dlg-about"><form method="dialog" class="dlg"><h2>Sobre el joc</h2>
+  <p>Tria un ocell i un instrument, posa'ls a la cambra central i mira què passa. Berthold t'ho explica a cada pas.</p>
+  <p>Cada resposta indica d'on surt: <strong>resultat descrit al curs</strong>, <strong>explicació general</strong>, <strong>investigació oberta</strong> o <strong>el curs no ho recull</strong>. El joc no s'inventa resultats.</p>
+  <p>Els textos de Berthold estan redactats per al joc a partir del curs i no són cites reals seves. Els dibuixos i les direccions són esquemàtics.</p>
+  <div id="photo-credits" class="photo-credits"></div>
+  <button class="btn primary">Tanca</button></form></dialog>
+
+<script src="data/species.js"></script>
+<script src="data/instruments.js"></script>
+<script src="data/results.js"></script>
+<script src="data/photos.js"></script>
+<script src="birds.js"></script>
+<script src="berthold.js"></script>
+<script src="sound.js"></script>
+<script src="scenes.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

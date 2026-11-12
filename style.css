@@ -1,0 +1,114 @@
+/* El laboratori de Peter Berthold · Aula i Natura */
+:root{--green:#2F5D50;--green-d:#234539;--gold:#C2A35D;--gold-s:#EFE6CC;--bg:#F5F5F0;--card:#fff;--text:#1F2D28;--muted:#55655E;--line:#D9DCD2;--r:14px;
+ --curs:#2F5D50;--general:#3b6ea5;--obert:#a36b12;--cap:#6b6f73}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;line-height:1.45}
+h1,h2{font-family:Georgia,"Times New Roman",serif;color:var(--green);margin:0}
+.lab{max-width:1280px;margin:0 auto;padding:12px 14px 8px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{height:40px;width:auto}
+.kicker{display:block;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+h1{font-size:clamp(1.25rem,3.4vw,1.9rem)}
+h2{font-size:1rem;margin:4px 0 8px}
+.top-actions{display:flex;gap:8px}
+.btn{font:inherit;font-weight:600;min-height:44px;padding:10px 18px;border-radius:10px;border:2px solid var(--green);background:#fff;color:var(--green);cursor:pointer}
+.btn:hover:not(:disabled){background:#E4EFE9}
+.btn.primary{background:var(--green);color:#fff}.btn.primary:hover:not(:disabled){background:var(--green-d)}
+.btn.ghost{border-color:var(--line);color:var(--muted)}
+.btn.small{min-height:40px;padding:6px 14px;font-size:.92rem}
+.btn.big{font-size:1.1rem;padding:12px 30px}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+
+.grid{display:grid;grid-template-columns:260px minmax(0,1fr) 280px;gap:14px;align-items:start}
+/* Guia */
+.guide{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px;position:sticky;top:8px}
+.bt-host{width:100%;max-width:200px;margin:0 auto}
+.bt-host svg{width:100%;height:auto;display:block}
+.bubble{position:relative;background:var(--gold-s);border:2px solid var(--gold);border-radius:14px;padding:12px 14px;margin-top:10px;min-height:110px}
+.bubble::before{content:"";position:absolute;top:-10px;left:50%;margin-left:-9px;border:9px solid transparent;border-top:0;border-bottom-color:var(--gold)}
+.bubble p{margin:0 0 8px;font-size:1rem}
+/* Cambra */
+.chamber{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px}
+.cv-wrap{position:relative;border-radius:12px;overflow:hidden;background:#12201c}
+canvas{display:block;width:100%}
+.cv-wrap.over{outline:4px dashed var(--gold);outline-offset:-4px}
+.drop-hint{position:absolute;inset:auto 0 12px 0;text-align:center;color:rgba(255,255,255,.7);font-size:.95rem;pointer-events:none}
+.drop-hint[hidden]{display:none}
+.slots{display:flex;align-items:stretch;justify-content:center;gap:8px;margin:12px 0 8px}
+.plus{align-self:center;font-weight:700;color:var(--muted)}
+.slot{flex:1;max-width:260px;min-height:58px;text-align:left;background:#fbfbf7;border:2px dashed var(--line);border-radius:12px;padding:6px 12px;font:inherit;cursor:pointer}
+.slot.filled{border-style:solid;border-color:var(--green);background:#E4EFE9}
+.slot.over{border-color:var(--gold);background:var(--gold-s)}
+.slot-label{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+.slot-val{display:block;font-weight:700;color:var(--green)}
+.opts{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:6px 0}
+.opts[hidden],.hyp[hidden],.result[hidden],#try[hidden],.verdict[hidden]{display:none}
+.chip{font:inherit;font-size:.92rem;padding:8px 14px;min-height:40px;border-radius:99px;border:2px solid var(--line);background:#fff;cursor:pointer}
+.chip.on{border-color:var(--green);background:var(--green);color:#fff}
+.go-row{text-align:center;margin:8px 0}
+.hyp{background:var(--gold-s);border:2px solid var(--gold);border-radius:12px;padding:12px;margin-top:8px}
+.hyp-q{margin:0 0 8px;font-weight:700}
+.hyp-opts{display:grid;gap:8px;margin-bottom:8px}
+.hyp-opts .btn{text-align:left}
+.result{border:2px solid var(--line);border-radius:12px;padding:12px;margin-top:8px;background:#fbfbf7}
+.badge{display:inline-block;font-size:.8rem;font-weight:700;color:#fff;border-radius:99px;padding:4px 12px;margin-bottom:6px}
+.lv-curs{background:var(--curs)}.lv-general{background:var(--general)}.lv-obert{background:var(--obert)}.lv-cap{background:var(--cap)}
+.verdict{margin:4px 0;font-weight:700}
+.note{margin:6px 0 10px;font-size:.92rem;color:var(--muted)}
+.try{margin:6px 0 10px;font-size:.92rem}
+.try span{display:block;margin-bottom:6px;font-weight:600}
+#try-list{display:flex;flex-wrap:wrap;gap:6px}
+/* Prestatgeria */
+.shelf{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:10px}
+.birds{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:12px}
+.bird{border:2px solid var(--line);border-radius:10px;background:#f6f8f3;padding:2px 2px 4px;font:inherit;cursor:grab;text-align:center;min-height:44px}
+.bird img{width:100%;height:auto;display:block;pointer-events:none}
+.bird span{display:block;font-size:.68rem;line-height:1.15}
+.bird.on,.ins.on{border-color:var(--green);background:#E4EFE9}
+.instruments{display:grid;gap:6px}
+.ins{display:flex;gap:10px;align-items:center;text-align:left;border:2px solid var(--line);border-radius:10px;background:#fbfbf7;padding:6px 10px;font:inherit;cursor:grab;min-height:48px}
+.ins .ic{font-size:1.4rem;width:30px;text-align:center}
+.ins b{display:block;font-size:.9rem;color:var(--green)}.ins small{color:var(--muted);font-size:.76rem;line-height:1.2;display:block}
+.foot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:6px 14px;margin-top:12px;padding:10px 0;border-top:1px solid var(--line);font-size:.82rem;color:var(--muted)}
+.foot strong{color:var(--green)}
+dialog{border:none;border-radius:var(--r);padding:0;max-width:min(580px,92vw);box-shadow:0 10px 40px rgba(0,0,0,.3)}
+dialog::backdrop{background:rgba(31,45,40,.55)}
+.dlg{padding:20px;max-height:80vh;overflow:auto}
+.book-list{padding-left:18px;font-size:.9rem}
+.book-list li{margin-bottom:4px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+
+@media (max-width:980px){
+ .grid{grid-template-columns:1fr}
+ .guide{position:sticky;top:0;z-index:5;display:grid;grid-template-columns:110px 1fr;gap:10px;align-items:center}
+ .bubble{margin-top:0;min-height:0;max-height:34vh;overflow:auto}.bubble::before{display:none}
+ .bt-host{max-width:110px}
+ .birds{grid-template-columns:repeat(4,1fr)}
+}
+@media (max-width:520px){.birds{grid-template-columns:repeat(3,1fr)}.slot{padding:6px 8px}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+.who-btn{width:100%;margin-top:8px}
+.who-fig{margin:0 0 12px;text-align:center}.who-fig img{max-width:100%;max-height:300px;border-radius:10px}.who-fig figcaption{font-size:.8rem;color:var(--muted);margin-top:4px}
+.who-note{background:var(--gold-s);padding:8px 10px;border-radius:8px;font-size:.88rem}
+.bt-host.has-photo{max-width:220px}
+.bt-photo{position:relative;width:100%;overflow:hidden;border-radius:14px}
+.bt-photo img{position:absolute;left:0;top:6%;width:100%;height:94%;object-fit:fill}
+.bt-gap{position:absolute;background:transparent}
+.bt-cap{text-align:center;font-size:.78rem;color:var(--muted);margin-top:6px}
+@media (max-width:980px){.bt-host.has-photo{max-width:110px}.bt-cap{font-size:.65rem}}
+.code{margin:0 0 8px;font-size:.72rem;color:var(--muted);font-family:ui-monospace,Consolas,monospace}
+.voice-btn{width:100%;margin-top:6px}
+.photo-credits{font-size:.82rem;color:var(--muted)}
+.bird img.ph{object-fit:cover;aspect-ratio:4/3;border-radius:6px}
+.voice-type{display:block;margin-top:6px;font-size:.78rem;color:var(--muted)}.voice-type select{width:100%;margin-top:2px;font:inherit;padding:6px;border-radius:8px;border:2px solid var(--line);background:#fff}
+.start{position:fixed;inset:0;z-index:50;background:rgba(245,245,240,.97);display:flex;align-items:center;justify-content:center;padding:16px}
+.start[hidden]{display:none}
+.start-box{max-width:460px;text-align:center}
+.start-box h2{font-size:clamp(1.5rem,5vw,2.2rem);margin:6px 0 10px}
+.logo-start{max-height:70px;width:auto;margin:0 auto 10px;display:block}
+.start-hint{font-size:.85rem;color:var(--muted);margin-top:14px}
+.lv-estudi{background:#1f7a8c}.lv-possible{background:#7a4fa0}
+.go-row .btn{margin:0 4px 6px}
